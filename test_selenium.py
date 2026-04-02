@@ -22,6 +22,16 @@ driver.find_element(By.ID, "nombre").send_keys("Producto 1")
 driver.find_element(By.ID, "guardar").click()
 driver.save_screenshot("screenshots/crear.png")
 
+driver.find_element(By.ID, "nombre").clear()
+driver.find_element(By.ID, "guardar").click()
+
+time.sleep(2)
+
+alert = driver.switch_to.alert
+alert.accept()
+
+driver.save_screenshot("screenshots/limite.png")
+
 time.sleep(5)
 
 driver.find_element(By.XPATH, "//button[contains(text(),'Editar')]").click()
