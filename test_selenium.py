@@ -45,8 +45,10 @@ driver.get("file:///" + ruta.replace("\\", "/"))
 driver.find_element(By.ID, "username").send_keys("admin")
 driver.find_element(By.ID, "password").send_keys("wrong")
 driver.find_element(By.ID, "login").click()
-driver.save_screenshot("screenshots/login_incorrecto.png") 
 
-time.sleep(5)
+time.sleep(2)
 
-driver.quit()
+alert = driver.switch_to.alert
+alert.accept()
+
+driver.save_screenshot("screenshots/login_incorrecto.png")
