@@ -1,0 +1,51 @@
+<h1>CRUD Simple</h1>
+
+<input type="text" id="nombre" placeholder="Nombre">
+<button id="guardar" onclick="guardar()">Guardar</button>
+
+<ul id="lista"></ul>
+
+<script>
+let datos = [];
+
+function guardar() {
+    let nombre = document.getElementById("nombre").value;
+
+    if(nombre === ""){
+        alert("Campo vacío");
+        return;
+    }
+
+    datos.push(nombre);
+    mostrar();
+    document.getElementById("nombre").value = "";
+}
+
+function mostrar() {
+    let lista = document.getElementById("lista");
+    lista.innerHTML = "";
+
+    datos.forEach((item, index) => {
+        lista.innerHTML += `
+            <li>
+                ${item}
+                <button onclick="editar(${index})">Editar</button>
+                <button onclick="eliminar(${index})">Eliminar</button>
+            </li>
+        `;
+    });
+}
+
+function editar(index) {
+    let nuevo = prompt("Nuevo nombre:");
+    if(nuevo){
+        datos[index] = nuevo;
+        mostrar();
+    }
+}
+
+function eliminar(index) {
+    datos.splice(index, 1);
+    mostrar();
+}
+</script>
