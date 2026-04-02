@@ -8,12 +8,40 @@ import os
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
 ruta = os.path.abspath("login.html")
+
 driver.get("file:///" + ruta.replace("\\", "/"))
 
 driver.find_element(By.ID, "username").send_keys("admin")
 driver.find_element(By.ID, "password").send_keys("1234")
 driver.find_element(By.ID, "login").click()
 
-time.sleep(10)
+time.sleep(5)
+
+driver.find_element(By.ID, "nombre").send_keys("Producto 1")
+driver.find_element(By.ID, "guardar").click()
+
+time.sleep(5)
+
+driver.find_element(By.XPATH, "//button[contains(text(),'Editar')]").click()
+
+time.sleep(3)
+
+alert = driver.switch_to.alert
+alert.send_keys("Producto Editado")
+alert.accept()
+
+time.sleep(3)
+
+driver.find_element(By.XPATH, "//button[contains(text(),'Eliminar')]").click()
+
+time.sleep(3)
+
+driver.get("file:///" + ruta.replace("\\", "/"))
+
+driver.find_element(By.ID, "username").send_keys("admin")
+driver.find_element(By.ID, "password").send_keys("wrong")
+driver.find_element(By.ID, "login").click()
+
+time.sleep(5)
 
 driver.quit()
