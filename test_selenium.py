@@ -25,7 +25,7 @@ driver.save_screenshot("screenshots/crear.png")
 driver.find_element(By.ID, "nombre").clear()
 driver.find_element(By.ID, "guardar").click()
 
-time.sleep(2)
+time.sleep(3)
 
 alert = driver.switch_to.alert
 alert.accept()
